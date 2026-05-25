@@ -1,6 +1,6 @@
 import '../index.css';
 
-function Tiles(){
+function GuessLine(){
 
     return(
         <div className='tiles'>
@@ -8,4 +8,4 @@ function Tiles(){
         </div>
     )
 }
-export default Tiles;
+export default GuessLine;
