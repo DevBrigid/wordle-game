@@ -1,4 +1,4 @@
-# React Wordle Clone
+# React Wordle
 
 A lightweight, front-end Wordle clone built using React and CSS. The game challenges players to guess a secret 5-letter word within six attempts, featuring real-time keyboard inputs and dynamic tile color indicators.
 
