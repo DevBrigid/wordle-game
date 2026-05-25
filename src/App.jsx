@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import './App.css';
 import wordList from './database/db.json';
 import GuessLine from './components/GuessLine.jsx';
+import About from './components/About.jsx';
 
 
 const Num_Guesses = 6;
@@ -64,18 +65,21 @@ function App() {
   console.log(solution);
 
   return (
-    <div className='board'>
-      {
-        guesses.map((guess, index) => {
+  <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+    <About />
+      <div className='board'>
+        {guesses.map((guess, index) => {
           return (
             <GuessLine key={index}
-            guess={(index === currentGuessIndex ? currentGuess : guess ?? '').padEnd(WORD_LENGTH)} //if the index is the current guess index, show the current guess, otherwise show the guess in the array or an empty string if it's null
-            isFinal={currentGuessIndex > index || currentGuessIndex === -1} //if the current guess index is greater than the index, it means that the guess at that index has been finalized, or if there are no more guesses left (currentGuessIndex === -1), then all guesses are finalized
-            solution={solution}
+              guess={(index === currentGuessIndex ? currentGuess : guess ?? '').padEnd(WORD_LENGTH)} //if the index is the current guess index, show the current guess, otherwise show the guess in the array or an empty string if it's null
+              isFinal={currentGuessIndex > index || currentGuessIndex === -1} //if the current guess index is greater than the index, it means that the guess at that index has been finalized, or if there are no more guesses left (currentGuessIndex === -1), then all guesses are finalized
+              solution={solution}
             />
-          );
-        })
-      }
+            );
+          })
+        }
+      </div>
+
     </div>
   )
 }
