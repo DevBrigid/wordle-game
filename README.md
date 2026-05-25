@@ -1,16 +1,30 @@
-# React + Vite
+# React Wordle Clone
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A lightweight, front-end Wordle clone built using React and CSS. The game challenges players to guess a secret 5-letter word within six attempts, featuring real-time keyboard inputs and dynamic tile color indicators.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- **Dynamic Feedback:** Tiles change color based on accuracy upon pressing Enter:
+  - 🟩 **Green (`.correct`)**: Correct letter in the correct spot.
+  - 🟨 **Yellow (`.close`)**: Correct letter in the wrong spot.
+  - ⬛ **Grey (`.incorrect`)**: Letter is not in the word.
+- **Robust Input Handling:** Prevents non-alphabet characters and blocks typing beyond the 5-letter limit.
+- **Local Database:** Pulls words randomly from a local JSON dataset on initialization.
 
-## React Compiler
+## Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **Framework:** React (Hooks: `useState`, `useEffect`)
+- **Styling:** Vanilla CSS (Flexbox grid layout)
+- **Data:** JSON-based word registry
 
-## Expanding the ESLint configuration
+## Component Structure
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- `App.jsx`: Manages global game states (current guess, guess history, and secret solution extraction) along with standard window event listeners.
+- `GuessLine.jsx`: Processes individual letter tiles dynamically, verifying positioning calculations sequentially against the solution word.
+
+## Getting Started
+
+1. Clone the repository.
+2. Install dependencies:
+```bash
+   npm install
