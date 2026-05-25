@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import './App.css';
 import wordList from './database/db.json';
-// import GuessLine from './components/GuessLine'
+import GuessLine from './components/GuessLine.jsx';
 
 
 const Num_Guesses = 6;
@@ -29,9 +29,9 @@ function App() {
 
       //confirm if the key typed is a letter:
       const character = event.key.toLowerCase().charCodeAt(0);
-      const isLetter = event.key.length === 1
+      const isLetter = event.key.length === 1 &&
       character >= 'a'.charCodeAt(0) && 
-      'z'.charCodeAt(0);
+      character <= 'z'.charCodeAt(0);
 
       //finalizing the game using the inputs
       setCurrentGuess(prevGuess => {
@@ -44,9 +44,6 @@ function App() {
           const guessesClone = [...guesses];
           guessesClone[currentGuessIndex] = prevGuess;
           setGuesses(guessesClone);
-
-          console.log("GUESS INDEX: ",currentGuessIndex);
-
           return ''; //reset currentGuess after storing the guess
         }
 
@@ -58,15 +55,27 @@ function App() {
     };
 
     window.addEventListener('keydown', onPressKey);
-    return () => window.removeEventListener('keydown', onPressKey);
-
-  }, [ guesses, solution ])
-
+    return () => {
+      window.removeEventListener('keydown', onPressKey);
+    };
+  }, [ guesses, solution ]);
+  
+  const currentGuessIndex = guesses.findIndex(guess => guess === null);
+  console.log(solution);
 
   return (
     <div className='board'>
-      {solution}
-      {/* <GuessLine /> */}
+      {
+        guesses.map((guess, index) => {
+          return (
+            <GuessLine key={index}
+            guess={(index === currentGuessIndex ? currentGuess : guess ?? '').padEnd(WORD_LENGTH)} //if the index is the current guess index, show the current guess, otherwise show the guess in the array or an empty string if it's null
+            isFinal={currentGuessIndex > index || currentGuessIndex === -1} //if the current guess index is greater than the index, it means that the guess at that index has been finalized, or if there are no more guesses left (currentGuessIndex === -1), then all guesses are finalized
+            solution={solution}
+            />
+          );
+        })
+      }
     </div>
   )
 }

@@ -1,26 +1,4 @@
-.correct{
-  background-color: lightgreen;
-}
-.incorrect{
-  background-color: lightgrey;
-}
-.close{
-  background-color: yellow;
-}
-
-.tile{
-  display: flex;
-  flex-direction: row;
-  border-color: black;
-  padding: 3px;
-  margin: 3px;
-  justify-content: center;
-  align-items: center;
-}
-.board{
-  display: grid;
-  grid-template-columns: auto;
-  border-color: black;
-  justify-content: center;
-  align-items: center;
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
 }
